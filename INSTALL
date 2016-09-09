@@ -1,0 +1,17 @@
+
+A. Download the repository and install the following python modules:
+
+1. Numpy
+2. Cython
+3. reedsolo (https://pypi.python.org/pypi/reedsolo)
+4. tqdm
+5. logging
+6. scipy
+
+
+B. Cythonize the code by running the following command in this folder:
+python setup.py build_ext --inplace
+ 
+C. Examples of how to encode and decode data are given in the Supplementary Material of our manuscript "Capacity approaching DNA storage" (Erlich and Zielinski, bioRxiv, 2016).
+
+
