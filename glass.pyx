@@ -1,11 +1,8 @@
-"""
-Copyright (C) 2016 Yaniv Erlich
-License: GPLv3-or-later. See COPYING file for details.
-"""
 from utils import *
 from droplet import Droplet
 from reedsolo import RSCodec
 from robust_solition import PRNG
+from other_screens import dexpandable_alphabet
 import numpy as np
 import operator
 import sys
@@ -17,7 +14,7 @@ class Glass:
     def __init__(self, num_chunks, out, header_size = 4, 
                  rs = 0, c_dist = 0.1, delta = 0.05, 
                 flag_correct = True, gc = 0.2, max_homopolymer = 4, 
-                max_hamming = 100, decode = True, chunk_size = 32, np = False, truth = None):
+                max_hamming = 100, decode = True, chunk_size = 32, exDNA = False, np = False, truth = None):
         
         self.entries = []
         self.droplets = Set()
@@ -26,6 +23,7 @@ class Glass:
         self.header_size = header_size
         self.decode = decode
         self.chunk_size = chunk_size
+        self.exDNA = exDNA
         self.np = np
         self.chunk_to_droplets = defaultdict(set)
         self.done_segments = Set()
@@ -33,6 +31,9 @@ class Glass:
         self.out = out
 
         self.PRNG = PRNG(K = self.num_chunks, delta = delta, c = c_dist, np = np)
+
+
+
 
         self.max_homopolymer = max_homopolymer
         self.gc = gc
@@ -53,7 +54,15 @@ class Glass:
     def add_dna(self, dna_string):
         #header_size is in bytes
  
-        data = dna_to_int_array(dna_string)
+        #data = dna_to_byte(dna_string)
+        if self.exDNA:
+            data = dexpandable_alphabet(dna_string, 
+                                        len(dna_string), 
+                                        n_symbols = 65,  
+                                        n_bytes = 21, 
+                                        alphabet_size = 6)
+        else:
+            data = dna_to_int_array(dna_string)
 
 
         #error correcting:
@@ -97,7 +106,7 @@ class Glass:
             d = Droplet(payload, seed, ix_samples)
             
             #more error detection (filter DNA that does not make sense)
-            if not screen_repeat(d, self.max_homopolymer, self.gc):
+            if not screen_repeat(d, self.max_homopolymer, self.gc, expand_nt = self.exDNA, orf = None ):
                 return -1, None
 
 
@@ -167,7 +176,7 @@ class Glass:
         
         if not droplet.data == truth_data:
             #error
-            print "Decoding error in ", chunk_num, ".\nInput is:", truth_data,"\nOutput is:", droplet.data,"\nDNA:", droplet.to_human_readable_DNA()
+            print "Decoding error in ", chunk_num, ".\nInput is:", truth_data,"\nOutput is:", droplet.data,"\nDNA:", droplet.to_human_readable_DNA(flag_exDNA = False)
             quit(1)
         else:
             #print chunk_num, " is OK. ", self.chunksDone, " are done"

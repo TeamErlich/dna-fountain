@@ -1,0 +1,13 @@
+
+*.pyc
+*.so
+
+aggressive.c
+droplet.c
+fountain.c
+glass.c
+robust_solition.c
+utils.c
+
+build/
+
