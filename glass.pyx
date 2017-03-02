@@ -106,7 +106,7 @@ class Glass:
             d = Droplet(payload, seed, ix_samples)
             
             #more error detection (filter DNA that does not make sense)
-            if not screen_repeat(d, self.max_homopolymer, self.gc, expand_nt = self.exDNA, orf = None ):
+            if not screen_repeat(d, self.max_homopolymer, self.gc):
                 return -1, None
 
 
