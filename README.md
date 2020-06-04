@@ -10,6 +10,11 @@ Zero-padding to make the input a multiple of 512bytes
 truncate -s2116608 ./info_to_code.tar.gz
 ```
 
+Or download the original archive:
+```
+wget http://files.teamerlich.org/dna_fountain/dna-fountain-input-files.tar.gz
+```
+
 Actual encoding of data as DNA (output is a FASTA file):
 ```
 python encode.py \
