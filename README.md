@@ -1,11 +1,11 @@
 **Encoding example**
 
-Packing input files to a tar and compressing:
+Create a compressed tar archive:
 ```
 tar -b1 -czvvf info_to_code.tar.gz ./info_to_code/
 ```
 
-Zero-padding to make the input be a multiple of 512bytes
+Zero-padding to make the input a multiple of 512bytes
 ```
 truncate -s2116608 ./info_to_code.tar.gz
 ```
