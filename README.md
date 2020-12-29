@@ -2,7 +2,7 @@
 
 Create a compressed tar archive:
 ```
-tar -b1 -czvvf info_to_code.tar.gz ./info_to_code/
+tar -b1 -czvf info_to_code.tar.gz ./info_to_code/
 ```
 
 Zero-padding to make the input a multiple of 512bytes
@@ -36,7 +36,7 @@ awk '{print "GTTCAGAGTTCTACAGTCCGACGATC"$0"TGGAATTCTCGGGTGCCAAGG"}' \
 > info_to_code.tar.gz.dna_order
 ```
 
-Output file is ready to for ordering synthetic DNA.
+Output file is ready to order synthetic DNA.
 
 **Decoding example**
 
