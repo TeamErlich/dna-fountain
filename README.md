@@ -61,6 +61,8 @@ FLOWCELL_BARCODE=AR4JF;
 done
 ```
 
+Sequencing data are available at www.ebi.ac.uk/ena/data/view/PRJEB19305 and www.ebi.ac.uk/ena/data/view/PRJEB19307
+
 Read stitching using PEAR (Zhang J et al., Bioinformatics, 2014).
 This step takes the 150nt reads and places them together to get back the full oligo.
 ```
