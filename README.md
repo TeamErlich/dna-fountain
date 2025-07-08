@@ -1,8 +1,6 @@
-'''
-NOTE: This repo reflects the code used in the original publication and has not been updated for compatibility with the python deprecation. 
+**NOTE: This repo reflects the code used in the original publication and has not been updated for compatibility with the python deprecation. 
 You can use a virtual environment or a version of the code that was ported to python3:
-https://github.com/jdbrody/dna-fountain
-'''
+https://github.com/jdbrody/dna-fountain**
 
 **Encoding example**
 
